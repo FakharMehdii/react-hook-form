@@ -1,18 +1,41 @@
+import React from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  taskTittle: yup
+    .string()
+    .required()
+    .max(35, "Task Tittle can contain 35 character only."),
+});
+
 export const InputField = ({ addTodo }) => {
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter" && event.target.value !== "") {
-      addTodo(event.target.value);
-      event.target.value = "";
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const onSubmitHandler = (data) => {
+    addTodo(data);
+    reset();
   };
 
   return (
-    <input
-      type="text"
-      className="input"
-      placeholder="Input task name and then tab enter to add"
-      onKeyDown={handleKeyDown}
-      autoFocus
-    />
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
+      <input
+        {...register("taskTittle")}
+        type="text"
+        className="input"
+        placeholder="Input task name and then tab enter to add"
+        autoFocus
+        required
+      />
+      {errors.taskTittle && (
+        <p className="errorMessage"> {errors.taskTittle.message}</p>
+      )}
+    </form>
   );
 };
