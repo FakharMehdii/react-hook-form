@@ -31,7 +31,7 @@ export function ToDoTask({ task, editTodo, removeTodo }) {
           <input
             className="checkbox"
             type="text"
-            value={inputValue ? inputValue : task.name}
+            value={inputValue ? inputValue : task.taskTittle}
             onChange={handleEditChange}
             onKeyDown={handleEditKeyPress}
             autoFocus
@@ -47,7 +47,7 @@ export function ToDoTask({ task, editTodo, removeTodo }) {
             }}
           />{" "}
           <span className={done ? "strike" : "normal"}>
-            {inputValue === "" ? task.name : inputValue}
+            {inputValue === "" ? task.taskTittle : inputValue}
           </span>{" "}
         </div>
       )}

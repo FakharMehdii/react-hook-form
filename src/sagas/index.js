@@ -5,12 +5,7 @@ import { addTodoInStore } from "/home/mergestack/Desktop/Fakhar Training/React/R
 function* createTodoSaga(action) {
   try {
     const crudUrl = process.env.REACT_APP_CRUD_ENDPOINT_URL;
-    const response = yield call(
-      axios.post,
-      crudUrl,
-      { name: action.payload },
-      {}
-    );
+    const response = yield call(axios.post, crudUrl, action.payload, {});
     yield call(updateStore);
   } catch (error) {
     console.error(error);
