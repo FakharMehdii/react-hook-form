@@ -45,7 +45,7 @@
 }
 
 .errorMessage {
-  color: black;
+  color: red;
 }
 
 .App-link {
