@@ -14,8 +14,8 @@ const schema = yup.object().shape({
       "non-numerical",
       "NUMBERS NOT ALLOWED!!! Kindly Write numbers in alphabets...",
       (value) => {
-        value=value.split("");
-        return !value.some((character) => character>='0' && character<='9')
+        value = value.split("");
+        return !value.some((character) => character >= "0" && character <= "9");
       }
     ),
 });
